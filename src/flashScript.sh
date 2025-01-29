@@ -31,4 +31,4 @@ unzstd "$IMG_PATH" -o "$UNCOMPRESSED_IMG"
 
 echo "Flashing the image to the Turing Pi node..."
 tpi flash -n "$NODE" --host "$IP" --user "$USER" --password "$PASSWORD" -i "./$UNCOMPRESSED_IMG"
-tpi power -n "$NODE" --host "$IP" --user "$USER" --password "$PASSWORD" --on
+tpi power -n "$NODE" --host "$IP" --user "$USER" --password "$PASSWORD" on
