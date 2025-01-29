@@ -13,7 +13,7 @@ USER=$3
 PASSWORD=$4
 
 echo "Building the Raspberry Pi image..."
-nix build .#images.rpi-example
+nix build .#rpi-sd-image
 
 echo "Uncompressing the image..."
 IMG_PATH=$(ls result/sd-image/nixos-sd-image-*.img.zst)
