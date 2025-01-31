@@ -51,6 +51,8 @@ parse_nodes() {
     echo "Invalid node input format. Only values 1, 2, 3, and 4 are acceptable." >&2
     exit 1
   fi
+
+  echo "${nodes[@]}"
 }
 
 # Parse nodes
@@ -92,8 +94,6 @@ sshpass -p "$PASSWORD" scp "./$UNCOMPRESSED_IMG" "$USER@$IP":/mnt/sdcard/
 
 for NODE in $NODES; do
   echo "Flashing node $NODE..."
-
-  echo "Flashing the image to the Turing Pi node $NODE..."
   tpi flash -n "$NODE" --host "$IP" --user "$USER" --password "$PASSWORD" -l -i "/mnt/sdcard/$UNCOMPRESSED_IMG"
   tpi power -n "$NODE" --host "$IP" --user "$USER" --password "$PASSWORD" on
 done
