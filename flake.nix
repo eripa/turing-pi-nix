@@ -3,12 +3,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = {
     self,
     nixpkgs,
     raspberry-pi-nix,
+    flake-utils,
   }: let
     nixosConfigurations = {
       rpi = nixpkgs.lib.nixosSystem {
@@ -20,12 +22,14 @@
         ];
       };
     };
-  in {
-    rpi-sd-image = nixosConfigurations.rpi.config.system.build.sdImage;
-
-    packages.x86_64-linux = {
-      turing-pi-nix = nixpkgs.legacyPackages.x86_64-linux.callPackage ./src {};
-      default = self.packages.x86_64-linux.turing-pi-nix;
-    };
-  };
+  in
+    {
+      rpi-sd-image = nixosConfigurations.rpi.config.system.build.sdImage;
+    }
+    // flake-utils.lib.eachDefaultSystem (system: {
+      packages = rec {
+        turing-pi-nix = nixpkgs.legacyPackages.${system}.callPackage ./src {};
+        default = self.packages.${system}.turing-pi-nix;
+      };
+    });
 }
