@@ -14,7 +14,7 @@
     settings.PasswordAuthentication = false;
   };
   users.users.root.openssh.authorizedKeys.keys = ["insert your ssh-key here"];
-  users.users.root.password = "test";
+  users.users.root.password = "turing-pi-node";
   networking = {
     hostName = "basic-example";
     useDHCP = false;
