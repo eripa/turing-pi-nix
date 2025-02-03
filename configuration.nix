@@ -13,7 +13,7 @@
     enable = true;
     settings.PasswordAuthentication = false;
   };
-  users.users.root.openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL8LS2zkdrrQWNlzjsWRAKtu9dG5hhrgksurDCCYmcri git@0x42.be"];
+  users.users.root.openssh.authorizedKeys.keys = ["insert your ssh-key here"];
   users.users.root.password = "test";
   networking = {
     hostName = "basic-example";
