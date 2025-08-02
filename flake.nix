@@ -1,7 +1,7 @@
 {
   description = "raspberry-pi-nix example";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     flake-utils.url = "github:numtide/flake-utils";
   };
@@ -29,7 +29,7 @@
       rpi-sd-image = nixosConfigurations.rpi.config.system.build.sdImage;
     }
     // flake-utils.lib.eachDefaultSystem (system: {
-      packages = rec {
+      packages = {
         turing-pi-nix = nixpkgs.legacyPackages.${system}.callPackage ./src { };
         default = self.packages.${system}.turing-pi-nix;
       };
