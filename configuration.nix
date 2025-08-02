@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   # bcm2711 for rpi 3, 3+, 4, zero 2 w
   # bcm2712 for rpi 5
   # See the docs at:
@@ -13,7 +14,7 @@
     enable = true;
     settings.PasswordAuthentication = false;
   };
-  users.users.root.openssh.authorizedKeys.keys = ["insert your ssh-key here"];
+  users.users.root.openssh.authorizedKeys.keys = [ "insert your ssh-key here" ];
   users.users.root.password = "turing-pi-node";
   networking = {
     hostName = "basic-example";
